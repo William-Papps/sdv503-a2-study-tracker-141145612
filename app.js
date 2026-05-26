@@ -16,6 +16,11 @@ rl.question('Choose an option: ', (choice) => {
 
     if (choice === '1'){
         rl.question("Enter your study topic: ", (studyTopic) => {
+            if (studyTopic.trim() === "") {
+                console.log("Error: You entered nothing for study topic");
+                rl.close();
+                return;
+            }
             rl.question("Enter the amount of minutes studied: ", (studiedMinutes) => {
                 const newStudySession = {
                     topic: studyTopic,
