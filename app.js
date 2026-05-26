@@ -22,9 +22,16 @@ rl.question('Choose an option: ', (choice) => {
                 return;
             }
             rl.question("Enter the amount of minutes studied: ", (studiedMinutes) => {
+
+                const minutesIntoNumber = Number(studiedMinutes);
+                if (Number.isNaN(minutesIntoNumber) || !Number.isInteger(minutesIntoNumber) || minutesIntoNumber <= 0){
+                    console.log("Error: You entered a invalid amount of minutes")
+                    rl.close();
+                    return;
+                }
                 const newStudySession = {
                     topic: studyTopic,
-                    minutes: Number(studiedMinutes),
+                    minutes: minutesIntoNumber,
                 };
 
                 studySessions.push(newStudySession);
