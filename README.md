@@ -15,3 +15,9 @@ List of features
 Make sure you have node.js installed on your device
 type in git bash terminal while in the application folder directory
 node app.js
+
+Use the inputs 
+1 - Add a new study topic
+2 - Display Study's
+3 - Total study time
+4 - exit
