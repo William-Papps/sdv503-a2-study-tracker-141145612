@@ -5,6 +5,7 @@ const rl = readline.createInterface({
     output: process.stdout,
 });
 
+// Function to display menu options easily
 function showMenu() {
 console.log('===== Study Tracker =====');
 console.log('1. Add Study Session');
@@ -16,6 +17,7 @@ console.log('4. Exit');
 
 const studySessions = [];
 
+// Function asking user to try again after fail
 function askToTryAgain(retryFunction) {
     rl.question("Would you like to retry? (y/n): ", (answer) => {
 
@@ -29,6 +31,7 @@ function askToTryAgain(retryFunction) {
     });
 }
 
+// Function asking user for study topic
 function askForStudyTopic() {
 
     rl.question("Enter your study topic (Type 'exit' to quit): ", (studyTopic) => {
@@ -50,6 +53,7 @@ function askForStudyTopic() {
     });
 }
 
+// Function to ask user for study minutes input
 function askForStudyMinutes(studyTopic) {
 
     rl.question("Enter the amount of minutes studied (Type 'exit' to quit): ", (studiedMinutes) => {
@@ -82,6 +86,7 @@ function askForStudyMinutes(studyTopic) {
     });
 }
 
+// Function to list all recorded study sessions
 function listStudySessions(){
     if (studySessions.length === 0){
         console.log("There are no study sessions recorded yet.");
@@ -96,6 +101,7 @@ function listStudySessions(){
     askMenuChoice();
 }
 
+// Function to show total minutes studied
 function showTotalMinutes() {
     let totalMinutes = 0;
 
@@ -108,6 +114,7 @@ function showTotalMinutes() {
     askMenuChoice();
 }
 
+// Function to navigate menu
 function askMenuChoice(){
     showMenu();
 
@@ -122,10 +129,12 @@ function askMenuChoice(){
         console.log("Application closed.");
         rl.close();
     } else {
-        rl.close();
+        console.log("Invalid Menu Option Try Again:");
+        askMenuChoice();
     }
 });
 
 }
 
+// Calls the start of the program
 askMenuChoice();
