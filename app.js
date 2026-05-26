@@ -5,11 +5,14 @@ const rl = readline.createInterface({
     output: process.stdout,
 });
 
+function showMenu() {
 console.log('===== Study Tracker =====');
 console.log('1. Add Study Session');
 console.log('2. List Study Sessions');
 console.log('3. Show Total Minutes');
 console.log('4. Exit');
+}
+
 
 const studySessions = [];
 
@@ -75,17 +78,31 @@ function askForStudyMinutes(studyTopic) {
         };
         studySessions.push(newStudySession);
         console.log("New Study Session Saved Successfully");
-        console.log(studySessions);
-        rl.close();
+        askMenuChoice();
     });
 }
 
-rl.question('Choose an option: ', (choice) => {
+function listStudySessions(){
+    if (studySessions.length === 0){
+        console.log("There are no study sessions recorded yet.");
+        rl.close();
+        return;
+    }
+
+    console.log("Recorded Study Sessions List:");
+    studySessions.forEach((studySessions, index) => {
+        console.log(`${index + 1}. ${studySessions.topic} - ${studySessions.minutes} minutes`);
+    });
+}
+
+function askMenuChoice(){
+    showMenu();
+
+    rl.question('Choose an option: ', (choice) => {
     if (choice === '1') {
         askForStudyTopic();
     } else if (choice === "2") {
-        // Empty adding in later
-        rl.close();
+        listStudySessions();
     } else if (choice === "3") {
         // Empty adding in later
         rl.close();
@@ -96,3 +113,7 @@ rl.question('Choose an option: ', (choice) => {
         rl.close();
     }
 });
+
+}
+
+askMenuChoice();
