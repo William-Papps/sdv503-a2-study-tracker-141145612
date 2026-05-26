@@ -85,7 +85,7 @@ function askForStudyMinutes(studyTopic) {
 function listStudySessions(){
     if (studySessions.length === 0){
         console.log("There are no study sessions recorded yet.");
-        rl.close();
+        askMenuChoice();
         return;
     }
 
@@ -93,6 +93,19 @@ function listStudySessions(){
     studySessions.forEach((studySessions, index) => {
         console.log(`${index + 1}. ${studySessions.topic} - ${studySessions.minutes} minutes`);
     });
+    askMenuChoice();
+}
+
+function showTotalMinutes() {
+    let totalMinutes = 0;
+
+    for(let i = 0; i < studySessions.length; i ++) {
+        totalMinutes += studySessions[i].minutes;
+    }
+    
+    console.log(`Total time studied is: ${totalMinutes} minutes`);
+
+    askMenuChoice();
 }
 
 function askMenuChoice(){
@@ -104,8 +117,7 @@ function askMenuChoice(){
     } else if (choice === "2") {
         listStudySessions();
     } else if (choice === "3") {
-        // Empty adding in later
-        rl.close();
+        showTotalMinutes();
     } else if (choice === "4") {
         console.log("Application closed.");
         rl.close();
